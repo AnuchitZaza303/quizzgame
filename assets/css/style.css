@@ -1,0 +1,86 @@
+/* assets/css/style.css */
+
+/* --- General Animations --- */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.6s ease-in-out forwards;
+    opacity: 0;
+}
+
+/* --- Index Page Styling --- */
+.main-container {
+    animation-delay: 0.2s;
+}
+.main-container h1 {
+    animation-delay: 0.4s;
+}
+.main-container p {
+    animation-delay: 0.6s;
+}
+.main-container .start-button {
+    animation-delay: 0.8s;
+}
+.main-container .leaderboard-link {
+    animation-delay: 1s;
+}
+.start-button {
+    animation: pulse 2s infinite ease-in-out;
+}
+
+/* --- Game Page Styling --- */
+body.game-background {
+    background: linear-gradient(135deg, #4F46E5, #06B6D4);
+}
+.answer-option {
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.answer-option:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    border-color: #6D28D9;
+}
+.progress-bar-inner {
+    transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* --- Leaderboard Styling --- */
+body.leaderboard-background {
+    background: linear-gradient(135deg, #10B981, #F59E0B);
+}
+.leaderboard-table tr {
+    opacity: 0;
+    transform: translateX(20px);
+    animation: fadeInUp 0.5s ease-out forwards;
+}
+/* ทำให้แต่ละแถวขึ้นมาไม่พร้อมกัน */
+<?php for ($i = 0; $i < 10; $i++): ?>
+.leaderboard-table tr:nth-child(<?php echo $i + 1; ?>) {
+    animation-delay: <?php echo $i * 0.08; ?>s;
+}
+<?php endfor; ?>
+
+.leaderboard-table tr:first-child {
+    background-color: rgba(252, 211, 77, 0.5); /* สีทองอ่อนๆ */
+    --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+    border-left: 4px solid #F59E0B;
+}
